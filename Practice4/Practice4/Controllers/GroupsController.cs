@@ -30,9 +30,10 @@ namespace Practice4.Controllers
         }
 
         [HttpPost]
-        public Group CreateStudents([FromBody] string studentName)
+        public Group CreateStudents([FromBody] string groupID, string groupName, int groupSlots)
         {
-            return _groupManager.CreateGroup(studentName);
+
+            return _groupManager.CreateGroup(groupID,groupName, groupSlots);
         }
 
         [HttpPut]

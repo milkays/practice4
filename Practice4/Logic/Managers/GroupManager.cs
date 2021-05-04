@@ -10,7 +10,7 @@ namespace Certi.Practice4.Logic.Managers
     public class GroupManager : IGroupManager
     {
         private readonly IDbContext _dbContext;
-
+        
         public GroupManager(IDbContext dbContext)
         {
             _dbContext = dbContext;
@@ -22,17 +22,25 @@ namespace Certi.Practice4.Logic.Managers
             return DTOMappers.MapGroup(group);
         }
 
-        public Group CreateGroup(string groupName)
+        public Group CreateGroup(string groupID, string groupName, int groupSlots)
         {
-            return new Group()
+           Group g =  new Group()
             {
-                Name = groupName
+                ID = groupID,
+                Name = groupName,
+               
+                AvailableSlots = groupSlots
+
             };
+            //List<Database.Models.Group> group = _dbContext.GetAll();
+            //group.Add(g);
+            return g;
         }
 
         public Group UpdateGroup(Group group)
         {
             group.Name = "updated";
+
             return group;
         }
 

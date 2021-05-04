@@ -9,7 +9,7 @@ namespace Certi.Practice4.Logic.Managers
     {
         List<Group> GetAllInfo();
 
-        Group CreateGroup(string groupName);
+        Group CreateGroup(string groupID, string groupName, int groupSlots);
 
         Group UpdateGroup(Group group);
 

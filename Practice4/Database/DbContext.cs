@@ -31,7 +31,7 @@ namespace Certi.Practice4.Database
 
         public Group UpdateGroup(Group groupToUpdate)
         {
-            Group foundStudent = GroupTable.Find(student => student.ID == groupToUpdate.ID);
+            Group foundStudent = GroupTable.Find(group => group.ID == groupToUpdate.ID);
 
             foundStudent.Name = groupToUpdate.Name;
             return foundStudent;
