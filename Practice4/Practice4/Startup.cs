@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -10,6 +12,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.OpenApi.Models;
 
 namespace Practice4
 {
@@ -26,6 +29,12 @@ namespace Practice4
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddSwaggerGen(p =>
+            {
+                p.SwaggerDoc("v3", new OpenApiInfo { Title = "Practice WebAPI", Version = "v3" });
+
+                
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -41,6 +50,13 @@ namespace Practice4
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseSwagger();
+
+            app.UseSwaggerUI(p =>
+            {
+                p.SwaggerEndpoint("/swagger/v3/swagger.json", "Practice 4 ");
+            });
 
             app.UseEndpoints(endpoints =>
             {
